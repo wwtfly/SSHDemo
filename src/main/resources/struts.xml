@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd" >
+<struts>
+    <package name="SSH" extends="struts-default">
+        <action name="showAll" class="controller.ShowAllAction">
+            <result name="success">/WEB-INF/content/showAll.jsp</result>
+        </action>
+        <!--add/update的action时使用此action进行页面跳转，跳转到对应的页面-->
+        <action name="*">
+            <result>/WEB-INF/content/{1}User.jsp</result>
+        </action>
+        <!--添加用户时，处理用户响应的action-->
+        <action name="addUser" class="controller.AddUserAction">
+            <result name="success" type="redirect">showAll.action</result>
+        </action>
+        <!--删除用户时，处理用户响应的action-->
+        <action name="delete" class="controller.DeleteAction">
+            <result name="success" type="redirect">showAll.action</result>
+        </action>
+        <!--更新用户时，处理用户响应的action-->
+        <action name="userUpdate" class="controller.UserUpdate">
+            <result name="success" type="redirect">showAll.action</result>
+        </action>
+    </package>
+</struts>
